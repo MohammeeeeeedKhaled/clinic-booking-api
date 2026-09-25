@@ -1,5 +1,17 @@
 const User = require('../models/userModel');
 const generateToken = require('../utils/generateToken');
+// @desc    Get logged-in user profile
+// @route   GET /api/users/profile
+// @access  Private (Requires JWT via protect middleware)
+const getUserProfile = async (req, res) => {
+  // the document to 'req.user', we can directly respond with it.
+  res.status(200).json({
+    status: 'success',
+    data: {
+      user: req.user,
+    },
+  });
+};
 
 // @desc    Register a new user
 // @route   POST /api/users/register
@@ -100,4 +112,5 @@ const loginUser = async (req, res) => {
 module.exports = {
   registerUser,
   loginUser,
+  getUserProfile,
 };
