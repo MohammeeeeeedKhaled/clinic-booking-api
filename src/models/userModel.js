@@ -29,7 +29,7 @@ const userSchema = new mongoose.Schema({
             select:false // Prevents field from being returned in query projections by default (security best practice)
         },
         role: {
-            type:String,
+            type: String,
             enum:{
                 values: ['patient', 'doctor', 'admin'],
                 message: '{VALUE} is not a valid role'//error message 
