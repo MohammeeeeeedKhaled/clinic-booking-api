@@ -58,6 +58,17 @@ const doctorSchema = new mongoose.Schema(
             ],
         },
     },
+    avarageRating: {
+      type: Number,
+      default: 0,
+      min: [0, 'Rating must be above 0'],
+      max: [5, 'Rating must be below 5'],
+      set: (val) => Math.round(val * 10) / 10,  // Rounds to one decimal place
+    },
+    ratingsQuantity: {
+      type: Number,
+      default: 0,
+    },
   },
   {
     // Automatically manages 'createdAt' and 'updatedAt' fields
