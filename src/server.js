@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const connectDB = require('./config/db');
 const app = express();
+app.set('query parser', 'extended');//use extended query parser to handle nested query parameters like ?consultationFee[gte]=200
 const PORT = process.env.PORT || 5000;
 const userRoutes = require('./routes/userRoutes');
 const doctorRoutes = require('./routes/doctorRoutes');

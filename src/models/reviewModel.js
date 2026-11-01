@@ -38,7 +38,7 @@ reviewSchema.index({ doctor: 1, patient: 1 }, { unique: true });
 reviewSchema.statics.calcAverageRatings = async function (doctorId) {
     const stats = await this.aggregate([
         {
-        $match: { doctor: doctorId },
+        $match: { doctor: new mongoose.Types.ObjectId(doctorId) },
         },
         {
         $group: {
