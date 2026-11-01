@@ -45,8 +45,14 @@ const appointmentSchema = new mongoose.Schema(
     }
 );
 
-//Prevents double booking at the database level.
-appointmentSchema.index({ doctor: 1, date: 1, timeSlot: 1 }, { unique: true });
+// Prevents double booking at the database level for active appointments
+appointmentSchema.index(
+    { doctor: 1, date: 1, timeSlot: 1 },
+    {
+        unique: true,
+        partialFilterExpression: { status: { $in: ['pending', 'confirmed', 'completed'] } }
+    }
+);
 
 const Appointment = mongoose.model('Appointment', appointmentSchema);
 

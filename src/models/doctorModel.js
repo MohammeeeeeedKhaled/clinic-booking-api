@@ -58,7 +58,7 @@ const doctorSchema = new mongoose.Schema(
             ],
         },
     },
-    avarageRating: {
+    averageRating: {
       type: Number,
       default: 0,
       min: [0, 'Rating must be above 0'],
