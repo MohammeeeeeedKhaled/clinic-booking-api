@@ -1,4 +1,5 @@
 const express = require('express');
+const { registerValidator, loginValidator } = require('../validators/authValidator');
 const {
     registerUser,
     loginUser,
@@ -11,8 +12,8 @@ const { protect } = require('../middlewares/authMiddleware');
 const router = express.Router();
 
 // Public routes (Authentication endpoints)
-router.post('/register', registerUser);
-router.post('/login', loginUser);
+router.post('/register', registerValidator, registerUser);
+router.post('/login', loginValidator, loginUser);
 
 // Protected routes (Requires valid Bearer token)
 // Control flow: Request -> protect middleware -> getUserProfile controller
